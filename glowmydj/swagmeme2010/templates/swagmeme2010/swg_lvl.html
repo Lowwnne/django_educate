@@ -13,7 +13,6 @@
         {% for artist in artists %}
             <h2>{{ forloop.counter }}. {{ artist.title }}</h2>
             <p>{{ artist.listeners }}</p>
-            <p><a href="{% url 'castle' artist.id %}">Подробнее о исполнителе</a></p>
             {% if not forloop.last %}
             <hr>
             {% endif %}
