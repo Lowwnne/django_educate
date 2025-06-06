@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title }}</title>
+</head>
+<body>
+<header>
+    <h1>{{ title }}</h1>
+</header>
+<main>
+    <ul>
+        {% for artist in artists %}
+            <h2>{{ forloop.counter }}. {{ artist.title }}</h2>
+            <p>{{ artist.listeners }}</p>
+            <p><a href="{% url 'castle' artist.id %}">Подробнее о исполнителе</a></p>
+            {% if not forloop.last %}
+            <hr>
+            {% endif %}
+        {% endfor%}
+    </ul>
+</main>
+</body>
+</html>

@@ -2,23 +2,12 @@ from django.http import HttpRequest, HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-artists = [{'id': 1, 'title': 'Kai Angel', 'content': 'say viperr', 'is_published': False},
-               {'id': 2, 'title': 'Ivanzolo2004', 'content': 'autism 🤘🤘🤘', 'is_published': True},
-               {'id': 3, 'title': 'Платина', 'content': 'Бигбой капиталист', 'is_published': True},
-               {'id': 4, 'title': 'Куни вест', 'content': 'черный 👨🏿👨🏿👨🏿', 'is_published': False}]
+artists = [{'id': 1, 'title': 'Kai Angel', 'content': 'say viperr', 'is_published': False, 'listeners': 357777},
+               {'id': 2, 'title': 'Ivanzolo2004', 'content': 'autism 🤘🤘🤘', 'is_published': True, 'listeners': 6574733},
+               {'id': 3, 'title': 'Платина', 'content': 'Бигбой капиталист', 'is_published': True, 'listeners': 77777777},
+               {'id': 4, 'title': 'Куни вест', 'content': 'черный 👨🏿👨🏿👨🏿', 'is_published': False, 'listeners': 4677777}]
 
 menu = ['Swagg', 'History', 'About']
-
-def about(request: HttpRequest):
-    data = {'title': 'О сайте', 'text': 'Киндер буено'}
-    return render(request, 'swagmeme2010/base.html', data)
-
-def swagg_lvl(request: HttpRequest, swg_lvl):
-    return HttpResponse(f'<h1>Страница свэга</h1><p>Уровень свэга: {swg_lvl}</p>')
-
-def swagg_slug(request: HttpRequest, swg_slug):
-    print(request.GET)
-    return HttpResponse(f'<h1>Страница свэга</h1><p>Реклама: {swg_slug}</p>')
 
 def index(request: HttpRequest):
     data = {'title': 'Главная страница',
@@ -27,13 +16,18 @@ def index(request: HttpRequest):
 
     return render(request, 'swagmeme2010/index.html', context=data)
 
-def history(request: HttpRequest, year):
-    if year > 2025:
-        url = reverse('swg_lvl', args=('404', ))
-        print(url)
-        return redirect(url)
+def swagg(request: HttpRequest):
+    data = {'title': 'Топ исполнителей',
+            'artists': sorted([a for a in artists if a['is_published']], key=(lambda x: x['listeners']))}
+    return render(request, 'swagmeme2010/swg_lvl.html', context=data)
 
-    return HttpResponse(f'<h1>История свэга</h1><p>Год: {year}</p>')
+def castle(request: HttpRequest, mbr_id: int):
+    return render(request, 'swagmeme2010/base.html', context={'title': 'Пост о игроке',
+                                                                                'content': f'id игрока: {mbr_id}'})
+
+def about(request: HttpRequest):
+    data = {'title': 'О сайте', 'text': 'Киндер буено'}
+    return render(request, 'swagmeme2010/base.html', data)
 
 def page_not_found(request: HttpRequest, exception=None):
     return HttpResponseNotFound('<h1>Ошибка 404. Страница не найдена мабой :&lpar;</h1>')
