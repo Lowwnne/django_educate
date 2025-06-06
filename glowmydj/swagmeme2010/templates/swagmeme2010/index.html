@@ -12,9 +12,13 @@
 <main>
     <ul>
         {% for artist in artists %}
-            <h2>{{ artist.name }}</h2>
-            <p>{{ artist.text }}</p>
+            {% if artist.is_published %}
+            <h2>{{ artist.title }}</h2>
+            <p>{{ artist.content }}</p>
+            {% endif %}
+            {% if not forloop.last %}
             <hr>
+            {% endif %}
         {% endfor%}
     </ul>
 </main>

@@ -2,10 +2,10 @@ from django.http import HttpRequest, HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-artists = [{'id': 1, 'name': 'Kai Angel', 'text': 'say viperr'},
-               {'id': 2, 'name': 'Ivanzolo2004', 'text': 'autism 🤘🤘🤘'},
-               {'id': 3, 'name': 'Платина', 'text': 'Бигбой капиталист'},
-               {'id': 4, 'name': 'Куни вест', 'text': 'черный'}]
+artists = [{'id': 1, 'title': 'Kai Angel', 'content': 'say viperr', 'is_published': False},
+               {'id': 2, 'title': 'Ivanzolo2004', 'content': 'autism 🤘🤘🤘', 'is_published': True},
+               {'id': 3, 'title': 'Платина', 'content': 'Бигбой капиталист', 'is_published': True},
+               {'id': 4, 'title': 'Куни вест', 'content': 'черный 👨🏿👨🏿👨🏿', 'is_published': False}]
 
 menu = ['Swagg', 'History', 'About']
 
