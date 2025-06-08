@@ -1,27 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>{{ title }}</title>
-</head>
-<body>
-<header>
-    <p>{{ menu|join:' | ' }}</p>
-    <h1>{{ title }}</h1>
-</header>
-<main>
-    <ul>
-        {% for artist in artists %}
-            {% if artist.is_published %}
+{% extends 'swagmeme2010/base1.html' %}
+{% block content %}
+<ul>
+    {% for artist in artists %}
+        {% if artist.is_published %}
+            <li>
             <h2>{{ artist.title }}</h2>
             <p>{{ artist.content }}</p>
             <p><a href="{% url 'castle' artist.id %}">Читать пост</a></p>
-            {% endif %}
             {% if not forloop.last %}
             <hr>
             {% endif %}
-        {% endfor%}
-    </ul>
-</main>
-</body>
-</html>
+            </li>
+        {% endif %}
+    {% endfor%}
+</ul>
+{% endblock %}

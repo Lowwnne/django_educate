@@ -1,23 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>{{ title }}</title>
-</head>
-<body>
-<header>
-    <h1>{{ title }}</h1>
-</header>
-<main>
-    <ul>
-        {% for artist in artists %}
-            <h2>{{ forloop.counter }}. {{ artist.title }}</h2>
-            <p>{{ artist.listeners }}</p>
-            {% if not forloop.last %}
-            <hr>
-            {% endif %}
-        {% endfor%}
-    </ul>
-</main>
-</body>
-</html>
+{% extends 'swagmeme2010/base1.html' %}
+{% block content %}
+<ul>
+    {% for artist in artists %}
+    <li>
+        <h2>{{ forloop.counter }}. {{ artist.title }}</h2>
+        <p>{{ artist.listeners }}</p>
+        {% if not forloop.last %}
+        <hr>
+        {% endif %}
+    </li>
+    {% endfor%}
+</ul>
+{% endblock %}
